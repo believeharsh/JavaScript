@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Background Color with Closures</title>
+  <style>
+    body {
+      transition: background-color 0.3s ease;
+      text-align: center;
+      padding-top: 50px;
+      font-family: Arial, sans-serif;
+    }
+
+    button {
+      padding: 12px 24px;
+      margin: 10px;
+      font-size: 16px;
+      cursor: pointer;
+      border: none;
+      border-radius: 6px;
+      color: white;
+    }
+
+    .blue { background-color: #3498db; }
+    .green { background-color: #2ecc71; }
+    .red { background-color: #e74c3c; }
+  </style>
+</head>
+<body>
+
+  <h1>Change Background Color (Using Closures)</h1>
+
+  <button class="blue">Blue</button>
+  <button class="green">Green</button>
+  <button class="red">Red</button>
+
+  <script>
+    const buttons = document.querySelectorAll("button");
+
+    function createClickHandler(color) {
+      return function () {
+        document.body.style.backgroundColor = color;
+      }
+    }
+
+    buttons.forEach(btn => {
+      const color = window.getComputedStyle(btn).backgroundColor;
+      btn.addEventListener("click", createClickHandler(color));
+    });
+  </script>
+
+</body>
+</html>
